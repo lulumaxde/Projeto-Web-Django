@@ -1,33 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <ul>
+{% block title %} Seja bem vindo {% endblock %}
+
+{% block main %}
+
+    <h1> Todos Usuarios registrados</h1>
+
+    <ul class="list-group">
         {% for person in persons %}
 
-            <li>
+            <li class="list-group-item">
                 <a> Nome: {{   person.first_name    }} </a>
                 <a> Sobrenome: {{   person.last_name   }} </a>
                 <a> IP: {{   person.IP   }} </a>
                 <a> local: {{   person.local  }} </a>
                 <a> data: {{   person.data    }} </a>
-                <a> texto: {{   person.texto   }} </a>
-                <a href="{% url 'person_update' person.id %}"> Editar </a>
-                <a href="{% url 'person_delete' person.id %}"> Deletar </a>
+                <br>
+                <a href="{% url 'person_update' person.id %}" class="btn btn-primary"> Editar </a>
+                <a href="{% url 'person_delete' person.id %}" class="btn btn-danger" > Deletar </a>
             </li>
 
         {% endfor %}
     </ul>
+    <br>
+    <a href="{% url 'person_new' %}" class="btn btn-primary">Novo Cliente</a>
+    <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
 
-    <a href="{% url 'person_new' %}">Novo Cliente</a>
+
+{% endblock %}
 
 
-</body>
-</html>
+
+
